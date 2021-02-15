@@ -14,7 +14,7 @@ export default function Login () {
         const response = await api.post ('/sessions',{
             email
         })
-
+//teste
         const { _id} = response.data;
 
         console.log (_id);
