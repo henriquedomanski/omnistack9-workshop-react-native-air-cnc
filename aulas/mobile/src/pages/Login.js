@@ -1,12 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-import { View, KeyboardAvoidingView, Platform, Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, AsyncStorage, KeyboardAvoidingView, Platform, Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import api from '../services/api'
 import logo from '../assets/logo.png';
 
-export default function Login () {
+export default function Login ({navigation}) {
     const [email, setEmail] = useState ('');
     const [techs, setTechs] = useState ('');
+
+    
+    useEffect (() => {
+        AsyncStorage.getItem('user').then(user => {
+            if (user) {
+                navigation.navigate ('List');
+            }
+        })
+
+    }, []);
 
 
 
@@ -17,7 +27,12 @@ export default function Login () {
 //teste
         const { _id} = response.data;
 
-        console.log (_id);
+        await AsyncStorage.setItem('user', _id);
+        await AsyncStorage.setItem('techs', techss);
+
+        navigation.navigate ('List');
+
+
         
 
     }
