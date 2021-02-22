@@ -8,20 +8,19 @@ import logo from '../assets/logo.png';
 export default function List () {
 
     const [techs, setTechs] = useState ([]);
-    useEffect(()=> {
+    useEffect(() => {
         AsyncStorage.getItem('techs').then(storagedTechs => {
-            const techsArray = storagedTechs.split (',').map (tech => tech.trim());
-
-            setTechs (techsArray)
+          const techsArray = storagedTechs.split(',').map(tech => tech.trim());
+    
+          setTechs(techsArray);
         })
-
-    }, [])
+      }, []);
 
     return (
         <SafeAreaView style={styles.container}>
             <Image style={styles.logo} source={logo}/>
 
-            <SpotList tech="ReactJS"/>
+            {techs.map(tech => <SpotList key={tech} tech={tech}/>)}
         </SafeAreaView>
     )
  }
@@ -38,3 +37,5 @@ export default function List () {
          marginTop: 50
      },
  })
+
+ 
