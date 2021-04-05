@@ -3,8 +3,8 @@ import { View, StyleSheet, Text } from 'react-native'
 
 import api from '../services/api';
 
-export default function SpotList ({tech}){
-
+//export default function SpotList ({tech}){
+    function SpotList ({tech}){
     const [spots, setSpots] = useState([])
 
     useEffect (() =>{

@@ -8,13 +8,30 @@ import logo from '../assets/logo.png';
 export default function List () {
 
     const [techs, setTechs] = useState ([]);
+    //novo do github original
+
     useEffect(() => {
-        AsyncStorage.getItem('techs').then(storagedTechs => {
-          const techsArray = storagedTechs.split(',').map(tech => tech.trim());
-    
-          setTechs(techsArray);
-        })
-      }, []);
+        AsyncStorage.getItem('techs')
+            .then((storagedTechs) => {
+                const techsArray = storagedTechs.split(',').map(tech => tech.trim())
+
+                /*  Tentar isso dps
+                if (techsArray== null)  {
+                    console.log ('entrou')
+                }
+
+                */
+
+                setTechs(techsArray)
+            })
+
+            /*.
+        catch(err => {
+        if (err) console.error(err);
+});*/
+            
+    },[]);
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -26,16 +43,17 @@ export default function List () {
  }
 
  const styles = StyleSheet.create ({
-     container: {
-         flex: 1,
-         
-     },
-     logo: {
-         height: 32,
-         resizeMode: 'contain',
-         alignSelf:'center',
-         marginTop: 50
-     },
- })
+    container: {
+        flex: 1,
+        
+    },
+    logo: {
+        height: 32,
+        resizeMode: 'contain',
+        alignSelf:'center',
+        marginTop: 50
+    },
+})
+
 
  
